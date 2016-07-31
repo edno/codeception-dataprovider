@@ -30,9 +30,9 @@ class DataProvider extends \Codeception\Platform\Extension
             $testActor = $test->getMetadata()->getCurrent('actor');
             $dataMethod = Annotation::forMethod($testClass, $testMethod)->fetch('dataprovider');
             if (false === empty($dataMethod)) {
-                if (false === is_callable([$testClass, $testMethod])) {
+                if (false === is_callable([$testClass, $dataMethod])) {
                     throw new TestParseException(
-                        $testFile, "DataProvider for ${testClass}->${testMethod} is invalid or not callable"
+                        $testFile, "DataProvider {$dataMethod} for ${testClass}->${testMethod} is invalid or not callable"
                         . PHP_EOL .
                         "Make sure this is a public static function."
                     );
@@ -43,7 +43,7 @@ class DataProvider extends \Codeception\Platform\Extension
                     foreach ($examples as $example) {
                         if ($example === null) {
                             throw new TestParseException(
-                                $testFile, "Values return by DataProvider for ${testClass}->${testMethod} is invalid"
+                                $testFile, "Values return by DataProvider {$dataMethod} for ${testClass}->${testMethod} is invalid"
                             );
                         }
                         $dataTest = new CestFormat($testClass, $testMethod, $testFile);
@@ -61,7 +61,7 @@ class DataProvider extends \Codeception\Platform\Extension
                     $tests[$id] = $dataProvider;
                 } catch(\Exception $e) {
                     throw new TestParseException(
-                        $testFile, "DataProvider for ${testClass}->${testMethod} is invalid or not callable"
+                        $testFile, "DataProvider {$dataMethod} for ${testClass}->${testMethod} is invalid or not callable"
                         . PHP_EOL .
                         "Make sure this is a public static function."
                     );
