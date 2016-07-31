@@ -12,14 +12,14 @@ use Codeception\Exception\TestParseException;
 
 class DataProvider extends \Codeception\Platform\Extension
 {
-  // list events to listen to
-  public static $events = array(
+    // list events to listen to
+    public static $events = array(
     //run before any test`
     'suite.before' => 'before'
-  );
+    );
 
-  public function before(\Codeception\Event\SuiteEvent $se)
-  {
+    public function before(\Codeception\Event\SuiteEvent $se)
+    {
     $suite = $se->getSuite();
     $tests = $suite->tests();
     foreach ($tests as $id => $test) {
@@ -54,12 +54,12 @@ class DataProvider extends \Codeception\Platform\Extension
                         ]);
                         $dataTest->getMetadata()->setCurrent(['actor' => $testActor, 'example' => $example]);
                         $step = new Comment('', $dataTest->getMetadata()->getCurrent('example'));
-                        $dataTest->getScenario()->setFeature($dataTest->getSpecFromMethod() . ' | '. $step->getArgumentsAsString(100));
+                        $dataTest->getScenario()->setFeature($dataTest->getSpecFromMethod() . ' | ' . $step->getArgumentsAsString(100));
                         $groups = Annotation::forMethod($testClass, $testMethod)->fetchAll('group');
                         $dataProvider->addTest($dataTest, $groups);
                     }
                     $tests[$id] = $dataProvider;
-                } catch(\Exception $e) {
+                } catch (\Exception $e) {
                     throw new TestParseException(
                         $testFile, "DataProvider for ${testClass}->${testMethod} is invalid or not callable"
                         . PHP_EOL .
@@ -70,6 +70,6 @@ class DataProvider extends \Codeception\Platform\Extension
         }
     }
     $suite->setTests($tests);
-  }
+    }
 
 }
