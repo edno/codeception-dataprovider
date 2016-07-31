@@ -1,7 +1,7 @@
 # Codeception DataProvider
 
 [![Latest Version](https://img.shields.io/packagist/v/edno/codeception-dataprovider.svg?style=flat-square)](https://packagist.org/packages/edno/codeception-dataprovider)
-<!--[![Dependency Status](https://www.versioneye.com/user/projects/575311c77757a0003bd4af43/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/575311c77757a0003bd4af43)-->
+[![Dependency Status](https://www.versioneye.com/user/projects/579e2cc8aa78d50041cb0baf/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/579e2cc8aa78d50041cb0baf)
 [![Build Status](https://img.shields.io/travis/edno/codeception-dataprovider.svg?style=flat-square)](https://travis-ci.org/edno/codeception-dataprovider)
 [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/16715897-2e48-48c3-bed0-1c4dc452da1a.svg?style=flat-square)](https://insight.sensiolabs.com/projects/16715897-2e48-48c3-bed0-1c4dc452da1a)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/edno/codeception-dataprovider.svg?style=flat-square)](https://scrutinizer-ci.com/g/edno/codeception-dataprovider/?branch=master)
