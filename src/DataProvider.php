@@ -18,9 +18,9 @@ class DataProvider extends \Codeception\Platform\Extension
     'suite.before' => 'before'
   );
 
-  public function before(\Codeception\Event\SuiteEvent $e)
+  public function before(\Codeception\Event\SuiteEvent $se)
   {
-    $suite = $e->getSuite();
+    $suite = $se->getSuite();
     $tests = $suite->tests();
     foreach ($tests as $id => $test) {
         if (get_class($test) == 'Codeception\Test\Cest') {
