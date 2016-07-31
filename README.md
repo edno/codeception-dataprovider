@@ -5,8 +5,8 @@
 [![Build Status](https://img.shields.io/travis/edno/codeception-dataprovider.svg?style=flat-square)](https://travis-ci.org/edno/codeception-dataprovider)
 [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/16715897-2e48-48c3-bed0-1c4dc452da1a.svg?style=flat-square)](https://insight.sensiolabs.com/projects/16715897-2e48-48c3-bed0-1c4dc452da1a)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/edno/codeception-dataprovider.svg?style=flat-square)](https://scrutinizer-ci.com/g/edno/codeception-dataprovider/?branch=master)
-[![Coverage Status](https://img.shields.io/coveralls/edno/codeception-dataprovider.svg?style=flat-square)](https://coveralls.io/github/edno/codeception-gherkin-param?branch=master)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/edno/codeception-secureshell/master/LICENSE)
+[![Coverage Status](https://img.shields.io/coveralls/edno/codeception-dataprovider.svg?style=flat-square)](https://coveralls.io/github/edno/codeception-dataprovider?branch=master)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/edno/codeception-dataprovider/master/LICENSE)
 
 The [Codeception](http://codeception.com/) extension for supporting dynamic data driven tests (CEST) using `@dataprovider` annotation.
 
