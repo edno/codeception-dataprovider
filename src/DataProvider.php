@@ -8,7 +8,7 @@ namespace Codeception\Extension;
 use Codeception\Util\Annotation;
 use Codeception\Step\Comment;
 use Codeception\Test\Cest as CestFormat;
-use ReflectionProperty;
+use Codeception\Exception\TestParseException;
 
 class ExampleProvider extends \Codeception\Platform\Extension
 {
@@ -59,7 +59,7 @@ class ExampleProvider extends \Codeception\Platform\Extension
                         $dataProvider->addTest($dataTest, $groups);
                     }
                     $tests[$id] = $dataProvider;
-                } catch(Exception $e) {
+                } catch(\Exception $e) {
                     throw new TestParseException(
                         $testFile, "DataProvider for ${testClass}->${testMethod} is invalid or not callable"
                         . PHP_EOL .
