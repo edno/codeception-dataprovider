@@ -10,7 +10,7 @@ use Codeception\Step\Comment;
 use Codeception\Test\Cest as CestFormat;
 use Codeception\Exception\TestParseException;
 
-class ExampleProvider extends \Codeception\Platform\Extension
+class DataProvider extends \Codeception\Platform\Extension
 {
   // list events to listen to
   public static $events = array(
