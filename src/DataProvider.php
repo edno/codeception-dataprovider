@@ -30,7 +30,7 @@ class DataProvider extends \Codeception\Platform\Extension
                 if (false === empty($dataMethod)) {
                     try {
                         if (false === is_callable([$testClass, $dataMethod])) {
-                            throw new Exception();
+                            throw new \Exception();
                         }
                         $dataProvider = new \PHPUnit_Framework_TestSuite_DataProvider();
                         $examples = $testClassName::$dataMethod();
