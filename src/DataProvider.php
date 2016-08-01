@@ -21,45 +21,48 @@ class DataProvider extends \Codeception\Platform\Extension
         $tests = $suite->tests();
         foreach ($tests as $id => $test) {
             if (is_a($test, 'Codeception\Test\Cest')) {
+
                 $testClass = $test->getTestClass();
                 $testClassName = get_class($testClass);
                 $testMethod = $test->getTestMethod();
                 $testFile = $test->getMetadata()->getFilename();
                 $testActor = $test->getMetadata()->getCurrent('actor');
+
                 $dataMethod = Annotation::forMethod($testClass, $testMethod)->fetch('dataprovider');
-                if (false === empty($dataMethod)) {
-                    try {
-                        if (false === is_callable([$testClass, $dataMethod])) {
-                            throw new \Exception();
-                        }
-                        $dataProvider = new \PHPUnit_Framework_TestSuite_DataProvider();
-                        $examples = $testClassName::$dataMethod();
-                        foreach ($examples as $example) {
-                            if ($example === null) {
-                                throw new TestParseException(
-                                    $testFile, "Invalid values format returned by DataProvider {$dataMethod} for ${$testClassName}->${testMethod}."
-                                );
-                            }
-                            $dataTest = new CestFormat($testClass, $testMethod, $testFile);
-                            $dataTest->getMetadata()->setServices([
-                                'di'         => $test->getMetadata()->getService('di'),
-                                'dispatcher' => $test->getMetadata()->getService('dispatcher'),
-                                'modules'    => $test->getMetadata()->getService('modules')
-                            ]);
-                            $dataTest->getMetadata()->setCurrent(['actor' => $testActor, 'example' => $example]);
-                            $step = new Comment('', $dataTest->getMetadata()->getCurrent('example'));
-                            $dataTest->getScenario()->setFeature($dataTest->getSpecFromMethod() . ' | ' . $step->getArgumentsAsString(100));
-                            $groups = Annotation::forMethod($testClass, $testMethod)->fetchAll('group');
-                            $dataProvider->addTest($dataTest, $groups);
-                        }
-                        $tests[$id] = $dataProvider;
-                    } catch (\Exception $e) {
-                        throw new TestParseException(
-                            $testFile, "DataProvider {$dataMethod} for ${$testClassName}->${testMethod} is invalid or not callable."
-                            . PHP_EOL .
-                            "Make sure this is a public static function."
-                        );
+
+                try {
+                    if (false === is_callable([$testClass, $dataMethod])) {
+                        throw new Exception();
                     }
+
+                    $dataProvider = new \PHPUnit_Framework_TestSuite_DataProvider();
+                    $examples = $testClassName::$dataMethod();
+                    foreach ($examples as $example) {
+                        if ($example === null) {
+                            throw new TestParseException(
+                                $testFile, "Invalid values format returned by DataProvider {$dataMethod} for ${testClassName}->${testMethod}."
+                            );
+                        }
+                        $dataTest = new CestFormat($testClass, $testMethod, $testFile);
+                        $dataTest->getMetadata()->setServices([
+                            'di'         => $test->getMetadata()->getService('di'),
+                            'dispatcher' => $test->getMetadata()->getService('dispatcher'),
+                            'modules'    => $test->getMetadata()->getService('modules')
+                        ]);
+                        $dataTest->getMetadata()->setCurrent(['actor' => $testActor, 'example' => $example]);
+                        $step = new Comment('', $dataTest->getMetadata()->getCurrent('example'));
+                        $dataTest->getScenario()->setFeature($dataTest->getSpecFromMethod() . ' | ' . $step->getArgumentsAsString(100));
+                        $groups = Annotation::forMethod($testClass, $testMethod)->fetchAll('group');
+                        $dataProvider->addTest($dataTest, $groups);
+                    }
+                    $tests[$id] = $dataProvider;
+
+                } catch (\Exception $e) {
+                    throw new TestParseException(
+                        $testFile, "DataProvider {$dataMethod} for ${testClassName}->${testMethod} is invalid or not callable."
+                        . PHP_EOL .
+                        "Make sure this is a public static function."
+                    );
                 }
             }
         }
