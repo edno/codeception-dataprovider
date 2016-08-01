@@ -31,6 +31,10 @@ class DataProvider extends \Codeception\Platform\Extension
                 $dataMethod = Annotation::forMethod($testClass, $testMethod)->fetch('dataprovider');
 
                 try {
+                    if (empty($dataMethod)) {
+                        continue;
+                    }
+                    
                     if (false === is_callable([$testClass, $dataMethod])) {
                         throw new \Exception();
                     }
