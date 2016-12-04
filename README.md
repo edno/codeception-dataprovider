@@ -10,6 +10,10 @@
 
 The [Codeception](http://codeception.com/) extension for supporting dynamic data driven tests (CEST) using `@dataprovider` annotation.
 
+:bangbang: **This extension is deprecated from Codeception 2.2.7. The `@dataprovider` annotation is now a core feature of Codeception (see [PR#3737](https://github.com/Codeception/Codeception/pull/3737))** 
+
+:bangbang: If you are running Codeception 2.2.7, then remove this extension by deleting the corresponding line in `composer.json` and your `codeception.yml`. No update required for existing tests using `@dataprovider`
+
 ## Minimum Requirements
 
 - Codeception 2.2
